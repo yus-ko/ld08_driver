@@ -32,6 +32,6 @@ def generate_launch_description():
         Node(
             package='ld08_driver',
             node_executable='ld08_driver',
-            name='ld08_driver',
+            node_name='ld08_driver',
             output='screen'),
     ])
