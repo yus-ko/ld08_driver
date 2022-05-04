@@ -38,7 +38,7 @@ private:
     double offset_y;
 
 public:
-    SlTransform(LDVersion version, bool to_right_hand = false);
+    SlTransform(LDVersion version);
     Points2D Transform(const Points2D &data);
     ~SlTransform();
 };
