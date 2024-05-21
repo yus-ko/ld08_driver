@@ -33,6 +33,10 @@ int main(int argc , char **argv)
 	strcat(topic_name,product_ver);
 	strcat(topic_name,"/scan");
 	ros::Publisher lidar_pub = nh.advertise<sensor_msgs::LaserScan>("scan", 1); /*create a ROS topic */
+	
+	ros::NodeHandle private_nh("~");
+    std::string frame_id_scan;
+    private_nh.param("frame_id", frame_id_scan, std::string("base_scan"));
 
     CmdInterfaceLinux cmd_port(ver);
     std::vector<std::pair<std::string, std::string> > device_list;
@@ -59,7 +63,7 @@ int main(int argc , char **argv)
 		cmd_port.Open(port_name);
 		sensor_msgs::LaserScan scan;
 		scan.header.stamp = ros::Time::now();
-		scan.header.frame_id = "base_scan";
+		scan.header.frame_id = frame_id_scan;
 		scan.range_min = 0.0;
 		scan.range_max = 100.0;
 
